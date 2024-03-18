@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+    Product name: {{ product.product_title }}<br>
+    Count {{ product.product_count }}<br>
+    Description {{ product.description }}<br>
+    Price {{ product.product_price }}<br>
+    Category: <a href="/category/{{ product.product_category.id }}">{{ product.product_category.id }}</a><br>
+    <img src="{{ product.product_image.url }}" alt="Photo">
+</body>
+</html>
