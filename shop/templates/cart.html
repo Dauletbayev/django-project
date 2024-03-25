@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Cart page responsive</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;700&display=swap');
+
+  {% load static %}
+
+body {font-family: 'Work Sans', sans-serif; font-size: 13px;-webkit-font-smoothing: antialiased;}
+</style><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+    <a href="/">На главную</a>
+  <h1 style="font-weight:300">Cart</h1>
+<div class="cart-table">
+
+    {% for i in cart %}
+    <div class="row cart-row">
+        <div class="col-xs-12 col-md-2">
+            <img src="{{ i.user_product.product_image.url }}" width="100%">
+        </div>
+        <div class="col-md-6">
+            <div class="product-articlenr">{{ i.user_product.pk }}</div>
+            <div class="product-name">{{ i.user_product.product_title }}</div>
+            <div class="product-price">
+                <p>Количество: {{ i.user_product_count }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 cart-actions">
+            <div class="product-price-total">Цена: ${{ i.user_product.product_price }}</div>
+            <div class="product-delete">
+                <a href="/delete_user_cart/{{ i.user_product.pk }}">Delete</a>
+            </div>
+        </div>
+    </div><!-- cart-row-->
+    {% endfor %}
+    <form method="post" style="text-align: center">
+        {% csrf_token %}
+        <button class="btn btn-primary">Оформить заказ</button>
+    </form>
+
+<div class="row cart-special-holder">
+  <div class="col-md-12">
+<div class="cart-special"><div class="cart-special-content">Add some more articles and get discount!!</div></div>
+  </div>
+  
+</div>
+  
+</div>
+<!-- partial -->
+  
+</body>
+</html>
